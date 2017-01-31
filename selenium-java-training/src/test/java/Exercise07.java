@@ -52,13 +52,13 @@ public class Exercise07 {
 
                     driver.findElement(selectedItem).findElement(By.cssSelector("li:nth-of-type(" + subMenuItem + ")")).click();
 
-                    Assert.assertTrue(isElementPresent(By.cssSelector("h1")));
+                    Assert.assertTrue("Page Title (h1 element) not found", isElementPresent(By.cssSelector("h1")));
 
                     /*
-                    // This code may verify that h1 text is equal to the subMenuItem text
-                    // but it does not work as far as h1 text in application is not always equal to subMenuItem text
+                    // This code should verify that h1 text is equal to the subMenuItem text
+                    // but it fails now as far as h1 text in application is not always equal to subMenuItem text
                     //
-                    // Assert.assertEquals(
+                    // Assert.assertEquals("Menu Item text is not equal to the Page Title text",
                     // driver.findElement(selectedItem).findElement(selectedItem).getText(),
                     // driver.findElement(By.cssSelector("h1")).getText()
                     // );
@@ -66,7 +66,7 @@ public class Exercise07 {
                 }
 
             } else {
-                Assert.assertEquals(
+                Assert.assertEquals("Menu Item text is not equal to the Page Title text",
                         driver.findElement(menuBlock).findElement(By.xpath("./li[" + menuItem + "]")).getText(),
                         driver.findElement(By.cssSelector("h1")).getText()
                 );
