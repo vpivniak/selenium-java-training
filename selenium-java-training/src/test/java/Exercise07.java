@@ -9,10 +9,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 /**
  * Created by sparrow on 31.01.2017.
  */
+
 public class Exercise07 {
 
     private WebDriver driver;
@@ -26,11 +26,10 @@ public class Exercise07 {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 4);
         baseURL = "http://localhost:4040/litecart";
         performLogin();
     }
-
 
     @Test
     public void adminPanelMenuTest() {
@@ -53,7 +52,6 @@ public class Exercise07 {
                     driver.findElement(selectedItem).findElement(By.cssSelector("li:nth-of-type(" + subMenuItem + ")")).click();
                     Assert.assertTrue("Page Title (h1 element) not found", isElementPresent(By.cssSelector("h1")));
                 }
-
             }
         }
     }

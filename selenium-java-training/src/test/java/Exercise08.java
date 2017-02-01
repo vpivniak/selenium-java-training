@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -18,16 +17,15 @@ import java.util.concurrent.TimeUnit;
 public class Exercise08 {
 
     private WebDriver driver;
-    private String baseURL = "http://localhost:4040/litecart";
+    private String baseURL = "http://localhost:4040/litecart/";
 
     @Before
     public void setUp() {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }
-
 
     @Test
     public void homePageItemsStickerTest() {
@@ -42,6 +40,7 @@ public class Exercise08 {
                         item.findElements(By.cssSelector(".sticker")).size() == 1);
             }
         }
+        else Assert.fail("There is no items on home screen or home screen is not opened.");
     }
 
     @After
