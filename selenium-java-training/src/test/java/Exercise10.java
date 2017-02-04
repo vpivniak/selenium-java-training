@@ -64,12 +64,12 @@ public class Exercise10 {
         verifyCommonParametersOfFont(regularPriceElement, campaignsPriceElement);
 
         if (driver instanceof FirefoxDriver) {
-            Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgb(119, 119, 119)");
+            Assert.assertEquals(msgGrayColor, regularPriceElement.getCssValue("color"), "rgb(119, 119, 119)");
         } else {
-            Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgba(119, 119, 119, 1)");
+            Assert.assertEquals(msgGrayColor, regularPriceElement.getCssValue("color"), "rgba(119, 119, 119, 1)");
         }
         if (!(driver instanceof ChromeDriver)) {
-            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "900");
+            Assert.assertEquals(msgBoldTextCamp, campaignsPriceElement.getCssValue("font-weight"), "900");
         }
 
         //Item Details page verifications
@@ -89,14 +89,13 @@ public class Exercise10 {
         verifyCommonParametersOfFont(regularPriceElement, campaignsPriceElement);
 
         if (driver instanceof FirefoxDriver) {
-            Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgb(102, 102, 102)");
+            Assert.assertEquals(msgGrayColor, regularPriceElement.getCssValue("color"), "rgb(102, 102, 102)");
         } else {
-            Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgba(102, 102, 102, 1)");
+            Assert.assertEquals(msgGrayColor, regularPriceElement.getCssValue("color"), "rgba(102, 102, 102, 1)");
         }
         if (!(driver instanceof ChromeDriver)) {
-            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "700");
+            Assert.assertEquals(msgBoldTextCamp, campaignsPriceElement.getCssValue("font-weight"), "700");
         }
-
     }
 
     private void verifyCommonParametersOfFont(WebElement regularPriceElement, WebElement campaignsPriceElement) {
@@ -104,24 +103,23 @@ public class Exercise10 {
         Float regularPriceFontSize = Float.parseFloat(regularPriceElement.getCssValue("font-size").replace("px", ""));
         Float campaignsPriceFontSize = Float.parseFloat(campaignsPriceElement.getCssValue("font-size").replace("px", ""));
 
-        Assert.assertTrue("Campaigns font is not bigger than regular", campaignsPriceFontSize > regularPriceFontSize);
-        Assert.assertEquals("Text is not line-through for regular price", regularPriceElement.getCssValue("text-decoration"), "line-through");
+        Assert.assertTrue(msgSizeFont, campaignsPriceFontSize > regularPriceFontSize);
+        Assert.assertEquals(msgStrikeOutText, regularPriceElement.getCssValue("text-decoration"), "line-through");
 
         if (driver instanceof ChromeDriver) {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "normal");
-            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "bold");
+            Assert.assertEquals(msgNormalTextReg, regularPriceElement.getCssValue("font-weight"), "normal");
+            Assert.assertEquals(msgBoldTextCamp, campaignsPriceElement.getCssValue("font-weight"), "bold");
         } else {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "400");
+            Assert.assertEquals(msgNormalTextReg, regularPriceElement.getCssValue("font-weight"), "400");
         }
 
         if (driver instanceof FirefoxDriver) {
-            Assert.assertEquals("Text color is not Red for campaigns price", campaignsPriceElement.getCssValue("color"), "rgb(204, 0, 0)");
+            Assert.assertEquals(msgRedColor, campaignsPriceElement.getCssValue("color"), "rgb(204, 0, 0)");
         } else {
-            Assert.assertEquals("Text color is not Red for campaigns price", campaignsPriceElement.getCssValue("color"), "rgba(204, 0, 0, 1)");
+            Assert.assertEquals(msgRedColor, campaignsPriceElement.getCssValue("color"), "rgba(204, 0, 0, 1)");
         }
-        Assert.assertEquals("Text is not normal for campaigns price", campaignsPriceElement.getCssValue("text-decoration"), "none");
+        Assert.assertEquals(msgNormalTextCamp, campaignsPriceElement.getCssValue("text-decoration"), "none");
     }
-
 
     @After
     public void shutDown() {
@@ -138,4 +136,12 @@ public class Exercise10 {
 
         return new WebDriver[]{new FirefoxDriver(), new ChromeDriver(), new InternetExplorerDriver()};
     }
+
+    private static final String msgRedColor = "Text color is not Red for campaigns price";
+    private static final String msgGrayColor = "Text color is not Gray for regular price";
+    private static final String msgNormalTextReg = "Font style is non normal for regular price";
+    private static final String msgNormalTextCamp = "Font style is non normal for campaigns price";
+    private static final String msgBoldTextCamp = "Font style is non bold for campaigns price";
+    private static final String msgStrikeOutText = "Text is not line-through for regular price";
+    private static final String msgSizeFont = "Campaigns font is not bigger than regular";
 }
