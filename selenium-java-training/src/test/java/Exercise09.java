@@ -58,7 +58,6 @@ public class Exercise09 {
         List<String> listOfCountriesWithZones = new ArrayList<String>();
 
         for (int row = 0; row < countries.size(); row++) {
-            //Ordering in app is case insensitive so need to make same case for comparing
             listOfAllCountries.add(countries.get(row).get(0));
             if (Integer.parseInt(countries.get(row).get(1)) > 0) {
                 listOfCountriesWithZones.add(countries.get(row).get(0));
@@ -77,7 +76,7 @@ public class Exercise09 {
             By rows = By.cssSelector("tr:not(.header)");
 
             List<WebElement> zones = driver.findElement(table).findElements(rows);
-            zones.remove(zones.size() - 1); //remove last row (input control for adding new zone)
+            zones.remove(zones.size() - 1); //remove unnecessary last row (input control for adding new zone)
 
             List<String> listOfAllZones = new ArrayList<String>();
 
