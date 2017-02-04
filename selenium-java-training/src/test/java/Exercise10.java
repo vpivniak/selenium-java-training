@@ -61,19 +61,14 @@ public class Exercise10 {
         String campaignsPriceValue = campaignsPriceElement.getText();
         String itemNameValue = items.get(0).findElement(itemName).getText();
 
-        verifyBasicParametersOfFont(regularPriceElement, campaignsPriceElement);
+        verifyCommonParametersOfFont(regularPriceElement, campaignsPriceElement);
 
         if (driver instanceof FirefoxDriver) {
             Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgb(119, 119, 119)");
         } else {
             Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgba(119, 119, 119, 1)");
         }
-
-        if (driver instanceof ChromeDriver) {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "normal");
-            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "bold");
-        } else {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "400");
+        if (!(driver instanceof ChromeDriver)) {
             Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "900");
         }
 
@@ -91,31 +86,33 @@ public class Exercise10 {
         Assert.assertEquals("Campaigns price on item page is differ than on home screen",
                 campaignsPriceElement.getText(), campaignsPriceValue);
 
-        verifyBasicParametersOfFont(regularPriceElement, campaignsPriceElement);
+        verifyCommonParametersOfFont(regularPriceElement, campaignsPriceElement);
 
         if (driver instanceof FirefoxDriver) {
             Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgb(102, 102, 102)");
         } else {
             Assert.assertEquals("Text color is not Gray for regular price", regularPriceElement.getCssValue("color"), "rgba(102, 102, 102, 1)");
         }
-
-        if (driver instanceof ChromeDriver) {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "normal");
-            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "bold");
-        } else {
-            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "400");
+        if (!(driver instanceof ChromeDriver)) {
             Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "700");
         }
 
     }
 
-    private void verifyBasicParametersOfFont(WebElement regularPriceElement, WebElement campaignsPriceElement) {
+    private void verifyCommonParametersOfFont(WebElement regularPriceElement, WebElement campaignsPriceElement) {
 
         Float regularPriceFontSize = Float.parseFloat(regularPriceElement.getCssValue("font-size").replace("px", ""));
         Float campaignsPriceFontSize = Float.parseFloat(campaignsPriceElement.getCssValue("font-size").replace("px", ""));
 
         Assert.assertTrue("Campaigns font is not bigger than regular", campaignsPriceFontSize > regularPriceFontSize);
         Assert.assertEquals("Text is not line-through for regular price", regularPriceElement.getCssValue("text-decoration"), "line-through");
+
+        if (driver instanceof ChromeDriver) {
+            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "normal");
+            Assert.assertEquals("Font style is non bold for campaigns price", campaignsPriceElement.getCssValue("font-weight"), "bold");
+        } else {
+            Assert.assertEquals("Font style is non normal for regular price", regularPriceElement.getCssValue("font-weight"), "400");
+        }
 
         if (driver instanceof FirefoxDriver) {
             Assert.assertEquals("Text color is not Red for campaigns price", campaignsPriceElement.getCssValue("color"), "rgb(204, 0, 0)");
