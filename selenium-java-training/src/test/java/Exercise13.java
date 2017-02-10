@@ -58,7 +58,7 @@ public class Exercise13 {
         }
 
         // 5) открыть корзину (в правом верхнем углу кликнуть по ссылке Checkout)
-        driver.findElement(By.linkText("Checkout »")).click();
+        driver.findElement(By.partialLinkText("Checkout")).click();
 
         // 6) удалить все товары из корзины один за другим, после каждого удаления подождать, пока внизу обновится таблица
         do {
