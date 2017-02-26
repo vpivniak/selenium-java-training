@@ -14,9 +14,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by sparrow on 04.02.2017.
- */
 public class Exercise14 {
 
     private WebDriver driver;
