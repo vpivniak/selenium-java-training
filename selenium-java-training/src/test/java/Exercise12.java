@@ -1,4 +1,3 @@
-import com.google.common.collect.Ordering;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -14,10 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.nio.file.FileSystem;
-import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * Created by sparrow on 04.02.2017.
