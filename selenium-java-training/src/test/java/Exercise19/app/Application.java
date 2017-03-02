@@ -40,8 +40,8 @@ public class Application {
 
     public void addItemToTheCart() {
         homePage.open();
-        homePage.choseFirsItem();
-        itemPage.addItemToTheChart();
+        homePage.chooseFirsItem();
+        itemPage.addItemToTheCart();
         homePage.open();
     }
 
