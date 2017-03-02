@@ -22,7 +22,7 @@ public class HomePage extends Page {
         driver.get("http://localhost:4040/litecart/");
     }
 
-    public void choseFirsItem() {
+    public void chooseFirsItem() {
         firstItem.click();
     }
 

@@ -19,18 +19,18 @@ public class ItemPage extends Page {
     }
 
     @FindBy(css = "button[name=add_cart_product")
-    public WebElement addToChartButton;
+    public WebElement addToCartButton;
 
     @FindBy(css = "select[name='options[Size]'")
     public WebElement sizeSelector;
 
-    public void addItemToTheChart() {
+    public void addItemToTheCart() {
 
         Integer count = Integer.parseInt(quantity.getText().split(" ")[0]) + 1;
 
         if (isElementPresent(By.cssSelector("select[name='options[Size]'")))
             new Select(sizeSelector).selectByValue("Small");
-        addToChartButton.click();
+        addToCartButton.click();
         wait.until(ExpectedConditions.textToBePresentInElement(quantity, count.toString()));
     }
 }
