@@ -1,0 +1,17 @@
+= Selenium training repository
+
+== The repository `WebDriver` tests
+
+== Hello World
+
+[source,java]
+----
+@Before
+    public void startUp()
+    {
+        ChromeDriverManager.getInstance().setup();
+
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+----
